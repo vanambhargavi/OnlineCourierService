@@ -1,0 +1,32 @@
+server:
+  port: 9990
+
+spring:
+  application:
+    name: API_GATEWAY
+  cloud:
+    gateway:
+      routes:
+      #Route Mapping
+      - id: customerservice
+        uri: http://localhost:9000/
+        predicates:
+        - Path=/api/cust/**
+        
+        #Route Mapping
+      - id: projectloginapplication
+        uri: http://localhost:8091/
+        predicates:
+        - Path=/api/product/**
+     
+      - id: COURIER-LOGIN-SERVICE
+        uri: 
+            lb://COURIER-LOGIN-SERVICE
+        predicates:
+        - Path=/product/user/**
+        
+      
+        
+
+
+
